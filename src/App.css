@@ -1,0 +1,16 @@
+.app {
+    width: max-content;
+}
+
+.tabs-list {
+    list-style-type: none;
+}
+
+.tabs {
+    margin:0.3em
+}
+
+.save-button {
+    margin-left:2.5em;
+    margin-bottom:1em;
+}
