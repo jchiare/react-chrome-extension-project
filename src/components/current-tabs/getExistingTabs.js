@@ -14,19 +14,16 @@ class ExistingTabs extends Component {
       this.project_name = React.createRef();
     }
 
-    handleSubmit = () => {
-
+    handleSubmit = (event) => {
       const save_project_name = this.project_name.current.value || 'test';
       chrome.storage.sync.set({[save_project_name]:this.checked_tabs});
 
       const outgoing_tab_ids = getOutgoingTabIDs(this.checked_tabs);
       chrome.tabs.remove(outgoing_tab_ids);
 
-      const existing_tabs = this.state.chrome.map(window => {
+      this.setState({chrome:this.state.chrome.map(window => {
         window.filter(tab => !outgoing_tab_ids.includes(tab.id))
-      });
-
-      this.setState({chrome:existing_tabs});
+      })},event.preventDefault);
 
     };
 
