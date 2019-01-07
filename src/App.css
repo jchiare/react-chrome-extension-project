@@ -14,3 +14,33 @@
     margin-left:2.5em;
     margin-bottom:1em;
 }
+
+a {
+    outline: none;
+    text-decoration: none;
+    padding:2px 1px 0;
+    margin:3em;
+  }
+  
+  a:link {
+    color: #91C5FF;
+  }
+  
+  a:visited {
+    color: #70B4FF;
+  }
+  
+  a:focus {
+    border-bottom: 1px solid;
+    background: #75B7FF;
+  }
+  
+  a:hover {
+    border-bottom: 1px solid;     
+    background: #E2F0FF;
+  }
+  
+  a:active {
+    background: #67aae0;
+    color: #52A4FE;
+  }
