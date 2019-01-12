@@ -10,15 +10,12 @@ function AddTabsStyle(props){
             <li className="tabs" key={tab.id}>
                 <a href={tab.url} target="_blank">{tab.title}</a>
             </li>
-        );
-        
-    } else{
-        console.log(props);
+        );  
     }
     
     return (
         <div>
-            {ListProjectTabs}
+            {ListProjectTabs || "No tabs in database"}
         </div>
     );
 }
@@ -26,10 +23,8 @@ function AddTabsStyle(props){
 function SavedTabs(props){
     const ListSavedTabs = 
         <ul className="tabs-list">
-        <h3>Project</h3>
-        <AddTabsStyle 
-            tabs={props.savedtabs}
-        />
+            <h3>Project</h3>
+            <AddTabsStyle tabs={props.savedtabs}/>
         </ul>;
 
     return (
@@ -39,7 +34,7 @@ function SavedTabs(props){
     );
 }
 
-class Test extends Component{
+class ViewProjects extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -55,11 +50,11 @@ class Test extends Component{
     render(){
         return (
             <div className="app">
-                <button onClick={() => goBack()}> View Existing Tabs</button>
+                <button onClick={() => goBack()}> Select more tabs</button>
                 <SavedTabs savedtabs={this.state.project}/>
             </div>
         );
     }
 }
 
-export default Test;
+export default ViewProjects;
