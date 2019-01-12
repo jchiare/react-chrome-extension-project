@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "React Extension",
-  "description": "Messing around with Chrome Extension",
+  "name": "Tab Manager",
+  "description": "Messing around with Chrome Extension .. for now",
   "version": "0.0.1",
 
   "browser_action": {
@@ -13,5 +13,8 @@
   "permissions": [
     "storage",
     "tabs"
-  ]
+  ],
+  "icons": { "16": "images/tab16.png",
+    "48": "images/tab48.png",
+   "128": "images/tab.png" }
 }

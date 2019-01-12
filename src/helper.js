@@ -1,5 +1,6 @@
 /*global chrome*/
 
+
 export function getOutgoingTabIDs(tabs){
     return tabs.map(e => e.id);
 }
@@ -24,4 +25,19 @@ export function getCurrentTabs(){
         all_tabs.push(new_set_tabs);
         this.addTabs(all_tabs);
       }).bind(this));
+}
+
+export function openTab(event){
+  chrome.tabs.get(parseInt(event.target.dataset.tab_id), function(tab) {
+    
+    chrome.tabs.highlight({
+      windowId:tab.windowId,
+      'tabs': tab.index
+    },
+    function(result){
+      if(!result.focused){ // select window if the selected tabs window is not focused
+        chrome.windows.update(result.id,{focused:true})
+      }
+    });
+  });
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../.././App.css';
+import { openTab } from '../.././helper.js';
 
 function TitleExpander(props){
   return(
@@ -11,14 +12,19 @@ function TitleExpander(props){
 }
 
 function Tabs(props){
-    const handleChange = (event) => {
-
-      props.oncheck({
-        id:parseInt(event.target.dataset.tab_id),
-        url:event.target.dataset.url,
-        title:event.target.dataset.title,
-        isChecked:event.target.checked
-      })
+    
+  const handleChange = (event) => {
+      
+      if (event.metaKey){ // if event is a "cmd" click
+        openTab(event);
+      } else {
+        props.oncheck({
+          id:parseInt(event.target.dataset.tab_id),
+          url:event.target.dataset.url,
+          title:event.target.dataset.title,
+          isChecked:event.target.checked
+        })
+      }      
     
     };
 
@@ -29,7 +35,7 @@ function Tabs(props){
           <label>
             <input 
               type="checkbox" 
-              onChange={handleChange}
+              onClick={handleChange}
               data-tab_id={tab.id}
               data-url={tab.url}
               data-title={tab.title}

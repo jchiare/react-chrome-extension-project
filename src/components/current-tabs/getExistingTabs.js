@@ -52,7 +52,7 @@ class ExistingTabs extends Component {
         <div className="app">
             <label>
               <strong>Project name:</strong>
-              <input type="text" ref={this.project_name} />
+              <input type="text" ref={this.project_name} disabled/>
             </label>
             <Window 
               chrome={this.state.chrome}

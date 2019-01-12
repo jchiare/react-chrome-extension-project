@@ -1,3 +1,7 @@
+/*
+All pages
+*/
+
 .app {
     width: 100vw;
 }
@@ -14,15 +18,23 @@
     margin:0.3em
 }
 
-.save-button {
-    margin-left:2.5em;
-    margin-bottom:1em;
-}
-
 li {
   font-family: 'Roboto', sans-serif;
   color:#000000cf;
   font-size:105%;
+}
+
+ /*
+  Existing Project page
+ */
+
+.fa {
+  font-size:145%;
+}
+
+.save-button {
+    margin-left:2.5em;
+    margin-bottom:1em;
 }
 
 li > label:hover {
@@ -31,7 +43,12 @@ li > label:hover {
 
 .window-title {
   display:inline;
-  margin-left:0.6em;
+  margin-left:0.3em;
+}
+
+.window-title:hover {
+  border-bottom: 1px darkblue solid;
+  color: darkblue;
 }
 
 .arrow-checkbox{
@@ -45,13 +62,15 @@ li > label:hover {
 input:checked + label > #icon{
   transform: rotate(-90deg);
   transition: transform 0.5s ease-in-out;
+  color:#1a0dab;
 }
 input + label > #icon{
   transform: rotate(0deg);
   transition: transform 0.5s ease-in-out;
+  color:#0f0579;
 }
 
-input + label ~ div{
+input + label ~ div {
   visibility: visible;
   opacity: 1;
   transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out, display 0.5s ease-in-out;
