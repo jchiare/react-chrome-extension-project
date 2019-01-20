@@ -25,7 +25,7 @@ class ExistingTabs extends Component {
       })},event.preventDefault);
 
     };
-
+    
     addTabs = (tabs) => {
       this.setState({chrome:this.state.chrome.concat(tabs)});
     };

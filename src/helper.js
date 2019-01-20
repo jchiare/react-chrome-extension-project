@@ -69,10 +69,27 @@ export function openTab(event){
 
     function(result){
 
-
-      if(!result.focused){ // select window if the selected tabs window is not focused
+      // if the tab that is highlighted is not in the focused window
+      // then bring the window that contains the select tab
+      if(!result.focused){ 
         chrome.windows.update(result.id,{focused:true})
       }
     });
+  });
+}
+
+export function openWindow(tabs){
+  chrome.windows.create({url:tabs});
+}
+
+export function removeProject(app_name,project_name){
+  
+  chrome.storage.sync.get(app_name,function(result){
+
+    const filtered_data = result[app_name].filter(project => project.project_title != project_name)
+
+    alert(filtered_data);
+    alert(JSON.stringify(filtered_data));
+    chrome.storage.sync.set({[app_name]:filtered_data});
   });
 }

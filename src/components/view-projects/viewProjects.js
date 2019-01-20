@@ -2,6 +2,24 @@
 import React, { Component } from 'react';
 import '../.././App.css';
 import { goBack } from 'route-lite';
+import { openWindow, removeProject } from '../.././helper.js';
+
+function DeleteProject(props){
+    return (<button onClick={() => removeProject('tabs_project',props.project_name)}>
+            Delete this project from storage
+            </button>);
+}
+
+function OpenAllTabs(props){
+    let urls;
+    if(props.tabs){
+        urls = props.tabs.map(tab => tab.url);
+    }
+
+    return (
+        <button onClick={() => openWindow(urls)}>Open all tabs in a new</button>
+    );
+}
 
 function ListTabs(props){
     
@@ -28,6 +46,8 @@ function SavedTabs(props){
         <ul className="tabs-list">
             <h3>{props.title}</h3>
             <ListTabs tabs={props.tab}/>
+            <OpenAllTabs tabs={props.tab}/>
+            <DeleteProject project_name={props.title}/>
         </ul>
     );
     
@@ -76,7 +96,7 @@ class ViewProjects extends Component{
         return (
             <div className="app">
                 <button onClick={() => goBack()}> Select more tabs</button>
-                <button onClick={this.clearStorage}>Clear Storage</button>
+                <button onClick={this.clearStorage}>Delete all projects</button>
                 <SavedProjects storage={this.state.project}/>
             </div>
         );
