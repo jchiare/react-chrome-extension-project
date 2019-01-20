@@ -88,8 +88,6 @@ export function removeProject(app_name,project_name){
 
     const filtered_data = result[app_name].filter(project => project.project_title != project_name)
 
-    alert(filtered_data);
-    alert(JSON.stringify(filtered_data));
     chrome.storage.sync.set({[app_name]:filtered_data});
   });
 }
