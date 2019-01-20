@@ -1,8 +1,40 @@
 /*global chrome*/
 
+function isEmpty(obj) {
+  return !obj || Object.keys(obj).length === 0;
+}
+
+function formatData(name,data){
+  const object = {
+    project_title: name,
+    tabs:data
+  };
+  return object;
+}
+
+export function addProjectToData(app_name,project_name,data){
+  
+  chrome.storage.sync.get(app_name,function(result){
+
+    const formatted_data = formatData(project_name,data);
+
+    let retrived_data = []
+    if (isEmpty(result)){
+      retrived_data.push(formatted_data)
+    } else {
+      retrived_data = result[app_name].concat(formatted_data);
+    }    
+    
+    chrome.storage.sync.set({[app_name]:retrived_data});
+  });
+}
 
 export function getOutgoingTabIDs(tabs){
     return tabs.map(e => e.id);
+}
+
+export function removeTabs(tabs){
+  chrome.tabs.remove(tabs);
 }
 
 export function getCurrentTabs(){
@@ -34,7 +66,10 @@ export function openTab(event){
       windowId:tab.windowId,
       'tabs': tab.index
     },
+
     function(result){
+
+
       if(!result.focused){ // select window if the selected tabs window is not focused
         chrome.windows.update(result.id,{focused:true})
       }

@@ -1,8 +1,7 @@
-/*global chrome*/
 import React, { Component } from 'react';
 import Window from './addTabsToProject.js';
 import '../.././App.css';
-import { getCurrentTabs, getOutgoingTabIDs } from '../.././helper.js';
+import { getCurrentTabs, getOutgoingTabIDs, addProjectToData, removeTabs } from '../.././helper.js';
 
 class ExistingTabs extends Component {
     constructor(props){
@@ -15,11 +14,11 @@ class ExistingTabs extends Component {
     }
 
     handleSubmit = (event) => {
-      const save_project_name = this.project_name.current.value || 'test';
-      chrome.storage.sync.set({[save_project_name]:this.checked_tabs});
+      const save_project_name = this.project_name.current.value || 'No Name';
+      addProjectToData('tabs_project',save_project_name,this.checked_tabs);
 
       const outgoing_tab_ids = getOutgoingTabIDs(this.checked_tabs);
-      chrome.tabs.remove(outgoing_tab_ids);
+      removeTabs(outgoing_tab_ids);
 
       this.setState({chrome:this.state.chrome.map(window => {
         window.filter(tab => !outgoing_tab_ids.includes(tab.id))
@@ -52,7 +51,7 @@ class ExistingTabs extends Component {
         <div className="app">
             <label>
               <strong>Project name:</strong>
-              <input type="text" ref={this.project_name} disabled/>
+              <input type="text" ref={this.project_name}/>
             </label>
             <Window 
               chrome={this.state.chrome}
